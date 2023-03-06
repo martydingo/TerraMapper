@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "TerraMapper"
+version = "0.1.0"
+description = "A python module to generate an image of a Terraria world from a worldfile, with deepzoom support."
+authors = ["Martin George <marty@dii.ngo>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "TerraMapper" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+lihzahrd = "^3.0.0"
+PyYAML = "^6.0"
+Pillow = "^9.4.0"
+deepzoomtools = {git = "https://github.com/openzoom/deepzoom.py"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
