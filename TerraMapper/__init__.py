@@ -1,17 +1,30 @@
 import lihzahrd, lihzahrd.enums, logging, logging.handlers, yaml, typing, deepzoom
-import constants
+from . import constants
 from PIL import Image, ImageDraw
 
 
 class TerraMapper:
     def __init__(
         self,
-        configPath="config.yaml",
+        config=None,
+        configPath=None,
     ) -> None:
         self.initLogging()
-        self.log.debug(f"Loading configuration from {configPath}")
-        self.config = self.loadConfig(configPath)
+        if config is None and configPath is None:
+            raise ValueError("Either config or configPath must be provided")
+        if config is not None and configPath is not None:
+            raise ValueError("Only one of config or configPath can be provided")
+        if config is not None:
+            self.log.debug(f"Loading configuration provided via module parameters")
+            self.config = config
+            self.log.debug(f"Configuration: {self.config}")
+        if configPath is not None:
+            self.log.debug(f"Loading configuration from {configPath}")
+            self.config = self.loadConfig(configPath)
+            self.log.debug(f"Configuration: {self.config}")
+
         self.generateMap()
+
         if self.config["deep_zoom"]["enabled"] == True:
             self.generateDeepZoomData()
 
