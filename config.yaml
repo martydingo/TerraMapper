@@ -1,0 +1,17 @@
+draw:
+  background: true
+  blocks: true
+  walls: true
+  liquids: true
+  wires: true
+  paint: true
+  min_x: 0
+  min_y: 0
+  region_width: 0
+  region_height: 0
+output:
+  file_path: ""
+world:
+  file_path: ""
+deep_zoom: 
+  enabled: true
